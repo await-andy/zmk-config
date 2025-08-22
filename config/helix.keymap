@@ -15,6 +15,7 @@
  #define LOWER  1
  #define RAISE  2
  #define ADJUST 3
+ #define ARROWS 4
 
 /* NOTE: At the time of the creation of this keymap, there are no specified codes for 'eisuu' and 'kana' input in ZMK.
 However, 'LANG1' and 'LANG2' are fully-functioning candidates for 'kana' and 'eisuu' input respectively.
@@ -26,17 +27,17 @@ As such, those are in use within the default layer at this time. */
 
               default_layer {
  // ---------------------------------------------------------------------------------------------------------------------------------
- // | GRAVE  |   1    |   2    |   3    |   4    |   5    |                                      |   6    |   7    |   8    |   9    |   0    |  DEL   |
- // |  TAB   |   Q    |   W    |   E    |   R    |   T    |                                      |   Y    |   U    |   I    |   O    |   P    |  BSPC  |
- // |  CTRL  |   A    |   S    |   D    |   F    |   G    |                                      |   H    |   J    |   K    |   L    |   ;    |   '    |
- // |  SHIFT |   Z    |   X    |   C    |   V    |   B    |  LBKT  |                    |  RBKT  |   N    |   M    |   ,    |   .    |   /    |  RET   |
- // | LCTRL |  ESC   |  ALT   |  LGUI  | ADJUST  | LOWER  | SPACE  |                    |  SPACE | RAISE  |  KANA  |  LEFT  |  DOWN  |  UP    |  RIGHT |
+ // | GRAVE  |  1   |  2   |  3   |   4    |   5   |                                      |   6    |   7    |   8    |   9    |   0    |  DEL   |
+ // |  TAB   |  Q   |  W   |  E   |   R    |   T   |                                      |   Y    |   U    |   I    |   O    |   P    |  BSPC  |
+ // |  ESC   |  A   |  S   |  D   |   F    |   G   |                                      |   H    |   J    |   K    |   L    |   ;    |   '    |
+ // |  SHIFT |  Z   |  X   |  C   |   V    |   B   |  LBKT |                    |  RBKT   |   N    |   M    |   ,    |   .    |   /    |  RET   |
+ // | ADJUST | ESC  | ALT  | LGUI | LCTRL  | LOWER | SPACE |                    |  SPACE  | RAISE  |  KANA  |  LEFT  |  DOWN  |  UP    |  RIGHT |
                      bindings = <
        &kp GRAVE  &kp N1  &kp N2   &kp N3   &kp N4    &kp N5                               &kp N6    &kp N7    &kp N8    &kp N9     &kp N0    &kp DEL
        &kp TAB    &kp Q   &kp W    &kp E    &kp R     &kp T                                &kp Y     &kp U     &kp I     &kp O      &kp P     &kp BSPC
-       &kp LCTRL  &kp A   &kp S    &kp D    &kp F     &kp G                                &kp H     &kp J     &kp K     &kp L      &kp SEMI  &kp SQT
+       &kp ESC    &kp A   &kp S    &kp D    &kp F     &kp G                                &kp H     &kp J     &kp K     &kp L      &kp SEMI  &kp SQT
        &kp LSHFT  &kp Z   &kp X    &kp C    &kp V     &kp B     &kp LBKT         &kp RBKT  &kp N     &kp M     &kp COMMA &kp PERIOD &kp SLASH &kp RET
-       &kp LCTRL &kp ESC &kp LALT &kp LGUI &mo ADJUST &mo LOWER &kp SPACE        &kp SPACE &mo RAISE &kp RCTRL &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT
+       &mo ADJUST &kp ESC &kp LALT &kp LGUI &kp LCTRL &lt LOWER BSPC &kp SPACE        &kp SPACE &lt RAISE RET &kp RCTRL &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT
                      >;
               };
               lower_layer {
@@ -85,4 +86,14 @@ As such, those are in use within the default layer at this time. */
                      >;
               };
        };
+
+       arrows_layer {
+           status = "reserved";
+       };
+
+/* kscan: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+        wakeup-source;
+    }; */
 };
