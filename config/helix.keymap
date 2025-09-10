@@ -20,20 +20,24 @@
 However, 'LANG1' and 'LANG2' are fully-functioning candidates for 'kana' and 'eisuu' input respectively.
 As such, those are in use within the default layer at this time. */
 
+&lt {
+  quick-tap-ms = <190>;
+};
+
 / {
-    behaviors {
-        hm: home_row_mod {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            require-prior-idle-ms = <120>;
-            tapping-term-ms = <250>;
-            quick-tap-ms = <175>;
-            bindings = <&kp>, <&kp>;
-            // hold-trigger-key-positions = < ... >; // List of keys on the other side of the keyboard
-            // hold-trigger-on-release;
-        };
-    };
+  behaviors {
+      hm: home_row_mod {
+          compatible = "zmk,behavior-hold-tap";
+          #binding-cells = <2>;
+          flavor = "balanced";
+          require-prior-idle-ms = <120>;
+          tapping-term-ms = <250>;
+          quick-tap-ms = <185>;
+          bindings = <&kp>, <&kp>;
+          // hold-trigger-key-positions = < ... >; // List of keys on the other side of the keyboard
+          // hold-trigger-on-release;
+      };
+  };
 
        keymap {
               compatible = "zmk,keymap";
