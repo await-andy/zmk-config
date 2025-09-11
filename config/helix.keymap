@@ -15,6 +15,7 @@
 #define RAISE  2
 #define ADJUST 3
 #define ARROWS 4
+#define CAS(keycode) &mt LS(LC(LALT)) keycode
 
 /* NOTE: At the time of the creation of this keymap, there are no specified codes for 'eisuu' and 'kana' input in ZMK.
 However, 'LANG1' and 'LANG2' are fully-functioning candidates for 'kana' and 'eisuu' input respectively.
@@ -48,13 +49,13 @@ As such, those are in use within the default layer at this time. */
  // |  TAB   |  Q   |  W   |  E   |   R    |   T   |                                 |   Y    |   U    |   I    |   O    |   P    |  BSPC  |
  // |  ESC   |  A   |  S   |  D   |   F    |   G   |                                 |   H    |   J    |   K    |   L    |   ;    |   '    |
  // |  SHIFT |  Z   |  X   |  C   |   V    |   B   |  LBKT |               |  RBKT   |   N    |   M    |   ,    |   .    |   /    |   \    |
- // | ADJUST | GLOBE| LCTRL| ALT  | LGUI   | LOWER | SPACE |               |  SPACE  | RAISE  |  RCMD  |  LEFT  |  DOWN  |  UP    |  RIGHT |
+ // | ADJUST | GLOBE| LCTRL| ALT  | LGUI   | LOWER | SPACE |               |   TAB   | RAISE  |  RCMD  |  LEFT  |  DOWN  |  UP    |  RIGHT |
                      bindings = <
   &kp GRAVE  &kp N1  &kp N2    &kp N3   &kp N4    &kp N5                              &kp N6   &kp N7   &kp N8    &kp N9     &kp N0    &kp DEL
   &kp TAB    &kp Q   &kp W     &kp E    &kp R     &kp T                               &kp Y    &kp U    &kp I     &kp O      &kp P     &kp BSPC
   &kp ESC    &kp A &hm LALT S &hm LCTRL D &kp F   &kp G                               &kp H    &kp J &hm RCTRL K &hm RALT L &hm RSHFT SEMI &kp SQT
   &kp LSHFT  &kp Z   &kp X     &kp C    &kp V     &kp B    &kp LBKT         &kp RBKT  &kp N    &kp M    &kp COMMA &kp PERIOD &kp SLASH &kp BSLH
-&mo ADJUST &kp GLOBE &kp LCTRL &kp LALT &kp LGUI &lt LOWER BSPC &kp SPACE &kp SPACE &lt RAISE RET &kp RCMD &kp LEFT &kp DOWN &kp UP    &kp RIGHT
+&mo ADJUST &kp GLOBE &kp LCTRL &kp LALT &kp LGUI &lt LOWER BSPC &kp SPACE CAS(TAB) &lt RAISE RET &kp RCMD &kp LEFT &kp DOWN  &kp UP    &kp RIGHT
                      >;
               };
               lower_layer {
@@ -62,28 +63,28 @@ As such, those are in use within the default layer at this time. */
  // |     |     |     |     |     |     |                    |  F6 |  F7 |  F8 |  F9  | F10 | F11 |
  // |  ~  |  !  |  @  |  #  |  $  |  %  |                    |  ^  |  &  |  *  |  (   |  )  | F12 |
  // |     |  |  |  -  |  =  |  _  |  +  |                    | LEFT| DOWN|  UP | RIGHT|  \  |     |
- // |     |     |     |     |     |     |  (  |        |  )  |     |PG_DN|PG_UP| HOME | END |     |
+ // | caps|     |     |     |     |  (  |  (  |        |  )  |  )  |PG_DN|PG_UP| HOME | END |     |
  // |     |     |     |     |     |     |     |        |     |     |     |     |      |     |PSCRN|
                      bindings = <
    &trans    &trans   &trans    &trans    &trans    &trans                           &kp F6    &kp F7    &kp F8    &kp F9    &kp F10  &kp F11
    &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp DLLR  &kp PRCNT                        &kp CARET &kp AMPS  &kp ASTRK &kp LPAR  &kp RPAR &kp F12
    &trans  &mt LSHIFT PIPE  &mt LALT MINUS  &mt LCTRL EQUAL  &kp UNDER &kp PLUS      &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &kp BSLH &trans
-   &trans    &trans   &trans    &trans    &trans    &trans    &kp LPAR      &kp RPAR &trans    &kp PG_DN &kp PG_UP &kp HOME  &kp END  &trans
+ &caps_word  &trans   &trans    &trans    &trans    &kp LPAR  &kp LPAR      &kp RPAR &kp RPAR  &kp PG_DN &kp PG_UP &kp HOME  &kp END  &trans
    &trans    &trans   &trans    &trans    &trans    &trans    &trans        &trans   &trans    &trans     &trans   &trans    &trans   &kp PSCRN
                      >;
               };
               raise_layer {
  // -----------------------------------------------------------------------------------------------------------------------------
- // |     |  F1  |  F2  |  F3  |  F4  |  F5  |                                    |  F6  |  F7  |  F8   |  f9   |  F10  |  F11  |
- // |  `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                    |      |  7   |   8   |   9   |       |  F12  |
- // |     |  LS  |   1  |   2  |   3  |   0  |                                    |   0  |  4   |   5   |   6   |  RS   |       |
- // |     |      |      |      |      |      |   {   |                    |   }   |      |      |       |       |       |       |
+ // |     |  F1  |  F2  |  F3  |  F4  |  F5  |                                    |  F6  |  F7  |  F8   |  F9   |  F10  |  F11  |
+ // |  `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                    |  F6  |  F7  |  F8   |  F9   |  F10  |  F11  |
+ // |     |   1  |   2  |   3  |   4  |   5  |                                    |   6  |  7   |   8   |   9   |   0   |  F12  |
+ // |     |      |      |      |      |   {  |   {   |                    |   }   |   }  |      |       |       |       |       |
  // |     |      |      |      |      |      |       |                    |       |      |      |       |       |       |       |
                      bindings = <
    &trans  &kp F1    &kp F2   &kp F3 &kp F4  &kp F5                       &kp F6  &kp F7  &kp F8     &kp F9       &kp F10   &kp F11
-   &kp GRAVE &kp F1  &kp F2   &kp F3 &kp F4  &kp F5                       &trans  &kp N7  &kp N8     &kp N9       &trans    &kp F12
-   &trans  &kp LSHFT &mt LALT N1 &mt LCTRL N2 &kp N3 &kp N0               &kp N0  &kp N4 &mt RCTRL N5 &mt RALT N6 &kp RSHFT &trans
-   &trans  &trans    &kp N1   &kp N2 &kp N3  &trans  &kp LBRC    &kp RBRC &trans  &trans  &trans     &trans       &trans    &trans
+   &kp GRAVE &kp F1  &kp F2   &kp F3 &kp F4  &kp F5                       &kp F6  &kp F7  &kp F8     &kp F9       &kp F10   &kp F11
+ &trans &mt LSHFT N1 &mt LALT N2 &mt LCTRL N3 &kp N4 &kp N5            &kp N6  &kp N7 &mt RCTRL N8 &mt RALT N9 &mt RSHFT N0 &kp F12
+   &trans  &trans    &kp N1   &kp N2 &kp N3 &kp LBRC &kp LBRC    &kp RBRC &kp RBRC &trans &trans     &trans       &trans    &trans
    &trans  &trans    &trans   &trans &trans  &trans  &trans        &trans &trans  &trans  &trans     &trans       &trans    &trans
                      >;
               };
