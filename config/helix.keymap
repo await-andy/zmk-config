@@ -40,46 +40,46 @@ As such, those are in use within the default layer at this time. */
       };
   };
 
-       keymap {
-              compatible = "zmk,keymap";
+    keymap {
+        compatible = "zmk,keymap";
 
-              default_layer {
+        default_layer {
  // ----------------------------------------------------------------------------------------------------------------------------------------
  // | GRAVE  |  1   |  2   |  3   |   4    |   5   |                                 |   6    |   7    |   8    |   9    |   0    |  DEL   |
  // |  TAB   |  Q   |  W   |  E   |   R    |   T   |                                 |   Y    |   U    |   I    |   O    |   P    |  BSPC  |
  // |  ESC   |  A   |  S   |  D   |   F    |   G   |                                 |   H    |   J    |   K    |   L    |   ;    |   '    |
  // |  SHIFT |  Z   |  X   |  C   |   V    |   B   |  LBKT |               |  RBKT   |   N    |   M    |   ,    |   .    |   /    |   \    |
  // | ADJUST | GLOBE| LCTRL| ALT  | LGUI   | LOWER | SPACE |               |   TAB   | RAISE  |  RCMD  |  LEFT  |  DOWN  |  UP    |  RIGHT |
-                     bindings = <
+                  bindings = <
   &kp GRAVE  &kp N1  &kp N2    &kp N3   &kp N4    &kp N5                              &kp N6   &kp N7   &kp N8    &kp N9     &kp N0    &kp DEL
   &kp TAB    &kp Q   &kp W     &kp E    &kp R     &kp T                               &kp Y    &kp U    &kp I     &kp O      &kp P     &kp BSPC
-  &kp ESC    &kp A &hm LALT S &hm LCTRL D &kp F   &kp G                               &kp H    &kp J &hm RCTRL K &hm RALT L &hm RSHFT SEMI &kp SQT
+ &kp ESC &hm LSHFT A &hm LALT S &hm LCTRL D &kp F &kp G                               &kp H    &kp J &hm RCTRL K &hm RALT L &hm RSHFT SEMI &kp SQT
   &kp LSHFT  &kp Z   &kp X     &kp C    &kp V     &kp B    &kp LBKT         &kp RBKT  &kp N    &kp M    &kp COMMA &kp PERIOD &kp SLASH &kp BSLH
 &mo ADJUST &kp GLOBE &kp LCTRL &kp LALT &kp LGUI &lt LOWER BSPC &kp SPACE CAS(TAB) &lt RAISE RET &kp RCMD &kp LEFT &kp DOWN  &kp UP    &kp RIGHT
-                     >;
-              };
-              lower_layer {
+                  >;
+        };
+        lower_layer {
  // -----------------------------------------------------------------------------------------------
  // |     |     |     |     |     |     |                    |  F6 |  F7 |  F8 |  F9  | F10 | F11 |
  // |  ~  |  !  |  @  |  #  |  $  |  %  |                    |  ^  |  &  |  *  |  (   |  )  | F12 |
  // |     |  |  |  -  |  =  |  _  |  +  |                    | LEFT| DOWN|  UP | RIGHT|  \  |     |
- // | caps|     |     |     |     |  (  |  (  |        |  )  |  )  |PG_DN|PG_UP| HOME | END |     |
- // |     |     |     |     |     |     |     |        |     |     |     |     |      |     |PSCRN|
+ // | caps|     |     |     |  "  |  (  |  (  |        |  )  |  )  |PG_DN|PG_UP| HOME | END |     |
+ // |     |     |     |     |     |     |     |        |  `  |     |     |     |      |     |PSCRN|
                      bindings = <
    &trans    &trans   &trans    &trans    &trans    &trans                           &kp F6    &kp F7    &kp F8    &kp F9    &kp F10  &kp F11
    &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp DLLR  &kp PRCNT                        &kp CARET &kp AMPS  &kp ASTRK &kp LPAR  &kp RPAR &kp F12
 &trans &hm LSHIFT PIPE &hm LALT MINUS  &hm LCTRL EQUAL  &hm LGUI UNDER &kp PLUS      &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &kp BSLH &trans
- &caps_word  &trans   &trans    &trans    &trans    &kp LPAR  &kp LPAR      &kp RPAR &kp RPAR  &kp PG_DN &kp PG_UP &kp HOME  &kp END  &trans
-   &trans    &trans   &trans    &trans    &trans    &trans    &trans        &trans   &trans    &trans     &trans   &trans    &trans   &kp PSCRN
+ &caps_word  &trans   &trans    &trans    &kp DQT   &kp LPAR  &kp LPAR      &kp RPAR &kp RPAR  &kp PG_DN &kp PG_UP &kp HOME  &kp END  &trans
+   &trans    &trans   &trans    &trans    &trans    &trans    &trans        &kp GRAVE &trans   &trans     &trans   &trans    &trans   &kp PSCRN
                      >;
-              };
-              raise_layer {
+        };
+        raise_layer {
  // -----------------------------------------------------------------------------------------------------------------------------
  // |     |  F1  |  F2  |  F3  |  F4  |  F5  |                                    |  F6  |  F7  |  F8   |  F9   |  F10  |  F11  |
  // |  `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                    |  F6  |  F7  |  F8   |  F9   |  F10  |  F11  |
  // |     |   1  |   2  |   3  |   4  |   5  |                                    |   6  |  7   |   8   |   9   |   0   |  F12  |
  // |     |      |      |      |      |   {  |   {   |                    |   }   |   }  |      |       |       |       |       |
- // |     |      |      |      |      |      |       |                    |       |      |      |       |       |       |       |
+ // |     |      |      |      |      |      |?caps? |                    |       |      |      |       |       |       |       |
                      bindings = <
    &trans  &kp F1    &kp F2   &kp F3 &kp F4  &kp F5                       &kp F6  &kp F7  &kp F8     &kp F9       &kp F10   &kp F11
    &kp GRAVE &kp F1  &kp F2   &kp F3 &kp F4  &kp F5                       &kp F6  &kp F7  &kp F8     &kp F9       &kp F10   &kp F11
@@ -87,8 +87,8 @@ As such, those are in use within the default layer at this time. */
    &trans  &trans    &kp N1   &kp N2 &kp N3 &kp LBRC &kp LBRC    &kp RBRC &kp RBRC &trans &trans     &trans       &trans    &trans
    &trans  &trans    &trans   &trans &trans  &trans  &trans        &trans &trans  &trans  &trans     &trans       &trans    &trans
                      >;
-              };
-              adjust_layer {
+        };
+        adjust_layer {
 // ---------------------------------------------------------------------------------------------------------------------------------
 // |   `    |    !    |    @    |    #    |    $     |    %    |                        |  ^   |  &   |  *  |  (  |  )  |  EP_ON   |
 // | BT CLR | BT SEL0 | BT SEL1 | BT SEL2 | BGT SEL3 | BT SEL4 |                        |      |      |     |     |     |          |
@@ -102,12 +102,12 @@ As such, those are in use within the default layer at this time. */
 &bt BT_PRV &trans      &trans      &trans       &trans  &trans  &kp C_VOL_DN  &kp C_VOL_UP &kp C_NEXT &kp C_PP &trans &trans &trans &ext_power EP_OFF
 &trans     &trans       &trans       &trans       &trans       &trans  &trans         &trans &trans &trans &trans &trans &trans  &soft_off
                      >;
-              };
-       };
+        };
+    };
 
-       arrows_layer {
-           status = "reserved";
-       };
+    arrows_layer {
+        status = "reserved";
+    };
 
 /* kscan: kscan {
         compatible = "zmk,kscan-gpio-matrix";
